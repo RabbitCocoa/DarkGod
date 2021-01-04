@@ -1,0 +1,92 @@
+/****************************************************
+    文件：WindowRoot.cs
+	作者：Rabbitcocoa
+    邮箱: 1085750968@qq.com
+    日期：2021/1/4 16:39:21
+	功能：窗口基类
+*****************************************************/
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class WindowRoot : MonoBehaviour
+{
+    protected ResSvc res=null;
+    protected AudioSvc audioSvc = null;
+
+   public void SetWndState(bool isAcive = true){
+        if (gameObject.activeSelf!=isAcive){
+            gameObject.SetActive(isAcive);
+        }
+
+        if (gameObject.activeSelf)
+        {
+            InitWnd();
+        }
+        else {
+            ClearWnd();
+        }
+    }
+    protected virtual void InitWnd(){
+        res = ResSvc.instance;
+        audioSvc = AudioSvc.instance;
+    }
+
+    protected virtual void ClearWnd(){
+        res = null;
+        audioSvc = null;
+    }
+
+    #region Tool Function
+    /// <summary>
+    /// 给文本框设置文字
+    /// </summary>
+    /// <param name="txt">文本框组件</param>
+    /// <param name="context">文字/或数字 已重载</param>
+    protected void SetText(Text txt , string context="")
+    {
+        txt.text = context;
+    }
+    protected void SetText(Text txt, int num = 0)
+    {
+        txt.text = num.ToString();
+    }
+
+    protected void SetText(Transform trans, string context = "")
+    {
+        SetText(trans.GetComponent<Text>(), context);
+    }
+    protected void SetText(Transform trans, int num = 0)
+    {
+        SetText(trans.GetComponent<Text>(), num.ToString());
+      
+    }
+
+   /// <summary>
+   /// 设置物体是否启用(已重载)
+   /// </summary>
+   /// <param name="obj">物体</param>
+   /// <param name="isActive">是否启用</param>
+    protected void SetActive(GameObject obj,bool isActive = true)
+    {
+        obj.SetActive(isActive);
+    }
+    protected void SetActive(Transform obj, bool isActive = true)
+    {
+        SetActive(obj.gameObject, isActive);
+    }
+    protected void SetActive(RectTransform obj, bool isActive = true)
+    {
+        SetActive(obj.gameObject, isActive);
+    }
+    protected void SetActive(Image obj, bool isActive = true)
+    {
+        SetActive(obj.gameObject, isActive);
+    }
+    protected void SetActive(Text obj, bool isActive = true)
+    {
+        SetActive(obj.gameObject, isActive);
+    }
+    #endregion
+}
