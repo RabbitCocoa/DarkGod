@@ -17,6 +17,7 @@ public class LoginWnd : WindowRoot
     public Button btnEnter;
     public Button btnNotice;
 
+
    protected override void InitWnd()
     {
         base.InitWnd();
@@ -37,6 +38,38 @@ public class LoginWnd : WindowRoot
             iptPsw.text = "";
         }
 
-        //TODO 更新账号密码
+     
     }
+
+
+    ///点击进入游戏
+    public void ClickEnterBtn()
+    {
+        audioSvc.PlayUIAudio(Constants.LoginUi);
+
+        string acct = iptAcct.text;
+        string pswd = iptPsw.text;
+        //TODO 更新账号密码
+        if (acct!=""  && pswd != "")
+        {
+            PlayerPrefs.SetString("Account", acct);
+            PlayerPrefs.SetString("passwd", pswd);
+
+            //TODO 发送网络消息 请求登录
+
+            //TOREMOVE
+            LoginSyc.Instance.RspLogin();
+        }
+        else
+        {
+            GameRoot.AddTips("账号或密码为空");
+        }
+    }
+
+    public void ClickNoticeBtn()
+    {
+        audioSvc.PlayUIAudio(Constants.UIClickBtn);
+        GameRoot.AddTips("功能正在开发");
+    }
+    
 }

@@ -18,4 +18,10 @@ public class Constants
 
     //音乐名
     public const string LoginBgm = "bgLogin";
+
+    //登录音效
+    public const string LoginUi = "uiLoginBtn";
+
+    //常规UI点击音效
+    public const string UIClickBtn = "uiClickBtn";
 }

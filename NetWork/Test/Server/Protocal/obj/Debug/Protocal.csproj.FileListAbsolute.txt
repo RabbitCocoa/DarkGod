@@ -1,0 +1,9 @@
+F:\DarkGodStudy\NetWork\Server\Protocal\bin\Debug\Protocal.dll
+F:\DarkGodStudy\NetWork\Server\Protocal\bin\Debug\Protocal.pdb
+F:\DarkGodStudy\NetWork\Server\Protocal\bin\Debug\PESocket.dll
+F:\DarkGodStudy\NetWork\Server\Protocal\bin\Debug\PESocket.pdb
+F:\DarkGodStudy\NetWork\Server\Protocal\obj\Debug\Protocal.csprojAssemblyReference.cache
+F:\DarkGodStudy\NetWork\Server\Protocal\obj\Debug\Protocal.csproj.CoreCompileInputs.cache
+F:\DarkGodStudy\NetWork\Server\Protocal\obj\Debug\Protocal.csproj.CopyComplete
+F:\DarkGodStudy\NetWork\Server\Protocal\obj\Debug\Protocal.dll
+F:\DarkGodStudy\NetWork\Server\Protocal\obj\Debug\Protocal.pdb

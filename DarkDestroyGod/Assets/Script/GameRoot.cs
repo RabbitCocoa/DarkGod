@@ -14,13 +14,25 @@ public class GameRoot : MonoBehaviour
     public static GameRoot instance = null;
     //加载界面API
     public LoadingWnd loadingWnd;
+    public DynamicWnd dynamicWnd;
+
     private void Start()
     {
         instance = this;
         DontDestroyOnLoad(this);
+        ClearUIRoot();
         Init();
     }
     
+    private void ClearUIRoot()
+    {
+        Transform canvas = transform.Find("Canvas");
+        for(int i = 0; i < canvas.childCount; i++)
+        {
+            canvas.GetChild(i).gameObject.SetActive(false);
+        }
+        dynamicWnd.SetWndState();
+    }
 
    private void Init()
     {
@@ -34,12 +46,18 @@ public class GameRoot : MonoBehaviour
         //业务系统初始化
         LoginSyc logSyc = GetComponent<LoginSyc>();
         logSyc.InitSys();
-
-
+   
         //窗口初始化
-
         //进入登录场景并加载UI
         logSyc.EnterLogin();
+    }
 
+
+
+
+    //添加tips调用此
+    public  static void AddTips(string tips)
+    {
+        instance.dynamicWnd.AddTips(tips);
     }
 }

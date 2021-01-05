@@ -13,7 +13,9 @@ public class LoginSyc : SystemRoot
 {
     public static LoginSyc Instance = null;
    public LoginWnd loginWnd;
-   public override void InitSys()
+    public CreateWnd createWnd;
+
+    public override void InitSys()
     {
         base.InitSys();
         Debug.Log("登录初始化");
@@ -37,4 +39,17 @@ public class LoginSyc : SystemRoot
         loginWnd.SetWndState();
         audioSvc.PlayBGMusic(Constants.LoginBgm,true);
     }
+
+    
+    public void RspLogin()
+    {
+        GameRoot.AddTips("登录成功");
+
+
+        //打开角色创建界面
+        createWnd.SetWndState(true);
+        //关闭登录界面
+        loginWnd.SetWndState(false);
+    }
+
 }
