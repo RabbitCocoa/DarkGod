@@ -5,6 +5,7 @@
     日期：2021/1/4 15:6:15
 	功能：游戏启动入口
 *****************************************************/
+using PEProtocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,25 @@ public class GameRoot : MonoBehaviour
     public LoadingWnd loadingWnd;
     public DynamicWnd dynamicWnd;
 
+    //玩家数据
+    private PlayerData playerData = null;
+    public PlayerData PlayerData
+    {
+        get
+        {
+            return PlayerData;
+        }    
+    }
+
+
+    public void SetPlayerData(RspLogin data)
+    {
+        playerData = data.playerData;
+    }
+    public void SetPlayerName(string name)
+    {
+        playerData.name = name;
+    }
     private void Start()
     {
         instance = this;
@@ -37,11 +57,15 @@ public class GameRoot : MonoBehaviour
    private void Init()
     {
         //服务模块初始化
+        NetSvc netSvc = GetComponent<NetSvc>();
+        netSvc.InitSvc();
+
         ResSvc res = GetComponent<ResSvc>();
         res.InitSvc();
 
         AudioSvc audioSvc = GetComponent<AudioSvc>();
         audioSvc.InitSvc();
+
 
         //业务系统初始化
         LoginSyc logSyc = GetComponent<LoginSyc>();

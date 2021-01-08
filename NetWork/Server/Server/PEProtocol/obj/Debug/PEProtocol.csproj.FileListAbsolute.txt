@@ -1,8 +1,10 @@
 F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\bin\Debug\PEProtocol.dll
 F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\bin\Debug\PEProtocol.pdb
 F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\bin\Debug\PESocket.dll
-F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\obj\Debug\PEProtocol.csprojAssemblyReference.cache
 F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\obj\Debug\PEProtocol.csproj.CoreCompileInputs.cache
 F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\obj\Debug\PEProtocol.csproj.CopyComplete
 F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\obj\Debug\PEProtocol.dll
 F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\obj\Debug\PEProtocol.pdb
+F:\DarkGodStudy\DarkDestroyGod\Assets\Script\Net\PEProtocol.dll
+F:\DarkGodStudy\DarkDestroyGod\Assets\Script\Net\PEProtocol.pdb
+F:\DarkGodStudy\NetWork\Server\Server\PEProtocol\obj\Debug\PEProtocol.csprojAssemblyReference.cache

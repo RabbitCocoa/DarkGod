@@ -5,6 +5,8 @@
     日期：2021/1/4 15:16:17
 	功能：登录业务系统
 *****************************************************/
+using PEProtocol;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +20,7 @@ public class LoginSyc : SystemRoot
     public override void InitSys()
     {
         base.InitSys();
-        Debug.Log("登录初始化");
+        PECommon.Log("登录初始化");
         Instance = this;
     }
     /// <summary>
@@ -41,15 +43,33 @@ public class LoginSyc : SystemRoot
     }
 
     
-    public void RspLogin()
+    public void RspLogin(GameMsg  msg)
     {
         GameRoot.AddTips("登录成功");
+        GameRoot.instance.SetPlayerData(msg.rspLogin);
 
+        if (msg.rspLogin.playerData.name == "")
+        {
+            //打开角色创建界面
+            createWnd.SetWndState(true);
+        }else
+        {
+            //进入主城TODO
+        }
 
-        //打开角色创建界面
-        createWnd.SetWndState(true);
         //关闭登录界面
         loginWnd.SetWndState(false);
     }
 
+    public void ReName(GameMsg msg)
+    {
+        GameRoot.instance.SetPlayerName(msg.rename.name);
+
+        //TODO
+        //跳转场景到主城
+
+
+        //关闭创建场景
+        createWnd.SetWndState(false);
+    }
 }

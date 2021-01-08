@@ -14,10 +14,10 @@ using System;
         static void Main(string[] args)
         {
             ServerRoot.Instance.Init();
-             while (true)
+            while (true)
             {
-
-             }
+              ServerRoot.Instance.Update();
+            }
         }
     }
 

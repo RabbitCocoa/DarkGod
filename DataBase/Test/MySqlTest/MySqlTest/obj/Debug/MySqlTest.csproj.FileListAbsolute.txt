@@ -1,0 +1,9 @@
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\bin\Debug\MySqlTest.exe.config
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\bin\Debug\MySqlTest.exe
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\bin\Debug\MySqlTest.pdb
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\bin\Debug\MySql.Data.dll
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\obj\Debug\MySqlTest.csprojAssemblyReference.cache
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\obj\Debug\MySqlTest.csproj.CoreCompileInputs.cache
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\obj\Debug\MySqlTest.csproj.CopyComplete
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\obj\Debug\MySqlTest.exe
+F:\DarkGodStudy\DataBase\Test\MySqlTest\MySqlTest\obj\Debug\MySqlTest.pdb

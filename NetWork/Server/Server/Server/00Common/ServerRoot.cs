@@ -20,14 +20,20 @@ using System.Threading.Tasks;
     public void Init()
     {
         //数据库层TODO 
+        DBMgr.Instance.Init();
 
         //服务层
         NetSvc.Instance.Init();
+        CacheSvc.Instance.Init();
         //业务系统层
         LoginSys.Instance.Init();
 
 
     }
 
+    public void Update()
+    {
+        NetSvc.Instance.Update();
+    }
    }
 

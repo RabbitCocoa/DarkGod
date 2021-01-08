@@ -91,7 +91,7 @@ public class ResSvc : MonoBehaviour
         TextAsset xml = Resources.Load<TextAsset>(PathDefine.RDNameCfg);
         if (!xml)
         {
-            Debug.LogError("xml file:" + PathDefine.RDNameCfg + " not exist");
+            PECommon.Log("xml file:" + PathDefine.RDNameCfg + " not exist");
         } else
         {
             XmlDocument doc = new XmlDocument();

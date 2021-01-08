@@ -5,6 +5,7 @@
     日期：2021/1/5 14:46:14
 	功能：角色创建界面
 *****************************************************/
+using PEProtocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,16 @@ public class CreateWnd : WindowRoot
         if (iptName.text != "")
         {
             //@TODO 
+            GameMsg msg = new GameMsg
+            {
+                cmd = (int)CMD.ReName,
+                rename = new Rename
+                {
+                    name = iptName.text
+                }
+            };
             //发送网络消息
+            netSvc.SendMsg(msg);
         }else
         {
             GameRoot.AddTips("当前名字不合法");

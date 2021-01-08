@@ -5,6 +5,7 @@
     日期：2021/1/4 16:18:48
 	功能：登录注册界面
 *****************************************************/
+using PEProtocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,18 +48,25 @@ public class LoginWnd : WindowRoot
     {
         audioSvc.PlayUIAudio(Constants.LoginUi);
 
-        string acct = iptAcct.text;
+        string acctd = iptAcct.text;
         string pswd = iptPsw.text;
-        //TODO 更新账号密码
-        if (acct!=""  && pswd != "")
+        if (acctd!=""  && pswd != "")
         {
-            PlayerPrefs.SetString("Account", acct);
+            PlayerPrefs.SetString("Account", acctd);
             PlayerPrefs.SetString("passwd", pswd);
 
             //TODO 发送网络消息 请求登录
-
+            GameMsg msg = new GameMsg()
+            {
+                cmd = (int)CMD.ReqLogin, 
+                reqLogin = new ReqLogin
+                {
+                    acct = acctd,
+                    pass=pswd
+                }
+            };
+            netSvc.SendMsg(msg);
             //TOREMOVE
-            LoginSyc.Instance.RspLogin();
         }
         else
         {

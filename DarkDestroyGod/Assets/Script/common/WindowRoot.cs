@@ -14,7 +14,7 @@ public class WindowRoot : MonoBehaviour
 {
     protected ResSvc res=null;
     protected AudioSvc audioSvc = null;
-
+    protected NetSvc netSvc = null;
    public void SetWndState(bool isAcive = true){
         if (gameObject.activeSelf!=isAcive){
             gameObject.SetActive(isAcive);
@@ -31,11 +31,13 @@ public class WindowRoot : MonoBehaviour
     protected virtual void InitWnd(){
         res = ResSvc.instance;
         audioSvc = AudioSvc.instance;
+        netSvc = NetSvc.instance;
     }
 
     protected virtual void ClearWnd(){
         res = null;
         audioSvc = null;
+        netSvc = null;
     }
 
     #region Tool Function

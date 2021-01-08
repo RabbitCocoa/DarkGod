@@ -9,3 +9,4 @@ F:\DarkGodStudy\NetWork\Server\Server\Server\obj\Debug\Server.csproj.CoreCompile
 F:\DarkGodStudy\NetWork\Server\Server\Server\obj\Debug\Server.csproj.CopyComplete
 F:\DarkGodStudy\NetWork\Server\Server\Server\obj\Debug\Server.exe
 F:\DarkGodStudy\NetWork\Server\Server\Server\obj\Debug\Server.pdb
+F:\DarkGodStudy\NetWork\Server\Server\Server\bin\Debug\MySql.Data.dll

@@ -9,30 +9,28 @@
 using System;
 using PEProtocol;
 using PENet;
- class ServerSession:PESession<GameMsg>
+ public class ServerSession:PESession<GameMsg>
  {
+
     protected override void OnConnected()
     {
-        PETool.LogMsg("Client Connect");
-        SendMsg(new GameMsg
-        {
-            text = "Welcome to connect"
-        });
+        PECommon.Log("Client Connect");
+        
 
     }
 
     protected override void OnDisConnected()
     {
-        PETool.LogMsg("Client DisConnect");
+        PECommon.Log("Client DisConnect");
     }
 
     protected override void OnReciveMsg(GameMsg msg)
     {
-        PETool.LogMsg("Client Req:"+msg.text);
-        SendMsg(new GameMsg
-        {
-            text = "SrvRsp" + msg.text
-        }); ;
+        PECommon.Log("Client Req:"+((CMD)msg.cmd).ToString());
+        NetSvc.Instance.AddMsgQue(this, msg);
+
     }
+
+
 }
 
