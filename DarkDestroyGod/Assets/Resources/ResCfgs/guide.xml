@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item ID="1001">
+		<npcID>0</npcID>
+		<dilogArr>
+		#0|晚辈$name，How are you?
+		#1|I am fine , thanks,and you?
+		#0|I am fine,too!
+		</dilogArr>
+		<actID>0</actID>
+		<coin>65</coin>
+		<exp>80</exp>
+	</item>
+	<item ID="1002">
+		<npcID>1</npcID>
+		<dilogArr>
+		#0|晚辈$name，Hao old are you?
+		#1|I am fine , thanks,and you?
+		#0|I am fine,too!
+		</dilogArr>
+		<actID>1</actID>
+		<coin>75</coin>
+		<exp>90</exp>
+	</item>
+<item ID="1003">
+		<npcID>2</npcID>
+		<dilogArr>
+			#0|晚辈$name，Hao old are you?
+		#1|I am fine , thanks,and you?
+		#0|I am fine,too!
+		</dilogArr>
+		<actID>2</actID>
+		<coin>75</coin>
+		<exp>80</exp>
+	</item>
+<item ID="1004">
+		<npcID>3</npcID>
+		<dilogArr>
+			#0|晚辈$name，Hao old are you?
+		#1|I am fine , thanks,and you?
+		#0|I am fine,too!
+		</dilogArr>
+		<actID>3</actID>
+		<coin>55</coin>
+		<exp>100</exp>
+	</item>
+<item ID="1005">
+		<npcID>-1</npcID>
+		<dilogArr>
+		#0|钱不是万能的,但没钱是万万不能的!
+		#1|是时候让自己的口袋充实了。
+		</dilogArr>
+		<actID>4</actID>
+		<coin>105</coin>
+		<exp>120</exp>
+	</item>
+<item ID="1006">
+		<npcID>-1</npcID>
+		<dilogArr>
+		#0|晚辈$name，Hao old are you?
+		#1|I am fine , thanks,and you?
+		#0|I am fine,too!
+		</dilogArr>
+		<actID>5</actID>
+		<coin>130</coin>
+		<exp>140</exp>
+	</item>
+</root>

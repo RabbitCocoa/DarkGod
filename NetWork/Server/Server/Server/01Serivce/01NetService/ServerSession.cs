@@ -11,26 +11,26 @@ using PEProtocol;
 using PENet;
  public class ServerSession:PESession<GameMsg>
  {
-
+    public int sessionID=0;
     protected override void OnConnected()
     {
-        PECommon.Log("Client Connect");
-        
-
+        sessionID = ServerRoot.Instance.GetSessionID();
+        PECommon.Log("Client Connect:sessionID-" + sessionID);
     }
 
     protected override void OnDisConnected()
     {
-        PECommon.Log("Client DisConnect");
+        LoginSys.Instance.ClearOffData(this);
+        PECommon.Log("Client DisConnect:sessionID-"+sessionID);
     }
 
     protected override void OnReciveMsg(GameMsg msg)
     {
-        PECommon.Log("Client Req:"+((CMD)msg.cmd).ToString());
+        PECommon.Log(sessionID+"-Client Req:"+((CMD)msg.cmd).ToString());
         NetSvc.Instance.AddMsgQue(this, msg);
 
     }
 
-
+  
 }
 

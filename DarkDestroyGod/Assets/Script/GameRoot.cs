@@ -23,7 +23,7 @@ public class GameRoot : MonoBehaviour
     {
         get
         {
-            return PlayerData;
+            return playerData;
         }    
     }
 
@@ -70,7 +70,10 @@ public class GameRoot : MonoBehaviour
         //业务系统初始化
         LoginSyc logSyc = GetComponent<LoginSyc>();
         logSyc.InitSys();
+        MainCitySyc mainCitySyc = GetComponent<MainCitySyc>();
+        mainCitySyc.InitSys();
    
+       
         //窗口初始化
         //进入登录场景并加载UI
         logSyc.EnterLogin();
@@ -83,5 +86,13 @@ public class GameRoot : MonoBehaviour
     public  static void AddTips(string tips)
     {
         instance.dynamicWnd.AddTips(tips);
+    }
+
+    public void SetPlayerDataByGuide(ResGuide data )
+    {
+        playerData.coin = data.coin;
+        playerData.lv = data.lv;
+        playerData.exp = data.exp;
+        playerData.guideid = data.guideId;
     }
 }

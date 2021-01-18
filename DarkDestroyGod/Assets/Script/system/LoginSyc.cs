@@ -55,6 +55,7 @@ public class LoginSyc : SystemRoot
         }else
         {
             //进入主城TODO
+           MainCitySyc.Instance.EnterMainCity();
         }
 
         //关闭登录界面
@@ -67,7 +68,7 @@ public class LoginSyc : SystemRoot
 
         //TODO
         //跳转场景到主城
-
+        MainCitySyc.Instance.EnterMainCity();
 
         //关闭创建场景
         createWnd.SetWndState(false);

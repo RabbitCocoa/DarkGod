@@ -96,6 +96,10 @@ public class NetSvc : MonoBehaviour
                     GameRoot.AddTips("网络连接异常");
                     PECommon.Log("数据库更新日常", LogType.Error);
                     break;
+                case ErrorCode.ServerDataError:
+                    GameRoot.AddTips("数据异常");
+                    PECommon.Log("服务器数据不一致", LogType.Error);
+                    break;
             }
         }else
         {
@@ -108,6 +112,14 @@ public class NetSvc : MonoBehaviour
                 case CMD.ReName:
                     LoginSyc.Instance.ReName(msg);
                     break;
+                case CMD.ResGuied:
+                   MainCitySyc.Instance.ResGuide(msg);
+                    break;
+
+                case CMD.PshChat:
+                    MainCitySyc.Instance.PshChat(msg);
+                    break;
+
             }
         }
 

@@ -106,5 +106,10 @@ class LoginSys
         pack.session.SendMsg(msg);
 
     }
+
+    public void ClearOffData(ServerSession session)
+    {
+        cacheSvc.AcctOffLine(session);
+    }
 }
 

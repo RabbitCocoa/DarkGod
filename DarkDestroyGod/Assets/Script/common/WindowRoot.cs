@@ -5,9 +5,11 @@
     日期：2021/1/4 16:39:21
 	功能：窗口基类
 *****************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class WindowRoot : MonoBehaviour
@@ -89,6 +91,40 @@ public class WindowRoot : MonoBehaviour
     protected void SetActive(Text obj, bool isActive = true)
     {
         SetActive(obj.gameObject, isActive);
+    }
+    #endregion
+
+
+    protected T GetOrAddComponent<T>(GameObject go) where T:Component
+    {
+        T t = go.GetComponent<T>();
+        if (t == null)
+            t = go.AddComponent<T>();
+
+        return t;
+    }
+
+    #region clickEvts
+    protected void OnClickDown(GameObject go,Action<PointerEventData> evt)
+    {
+        PEListener listener = GetOrAddComponent<PEListener>(go);
+        listener.onClickDown = evt;
+    }
+    protected void OnClickUp(GameObject go, Action<PointerEventData> evt)
+    {
+        PEListener listener = GetOrAddComponent<PEListener>(go);
+        listener.onClickUp = evt;
+    }
+    protected void OnClickDrag(GameObject go, Action<PointerEventData> evt)
+    {
+        PEListener listener = GetOrAddComponent<PEListener>(go);
+        listener.onClickDrag = evt;
+    }
+
+    protected void SetSprite(Image img,string path)
+    {
+        Sprite sp = res.LoadSprite(path, true);
+        img.sprite = sp;
     }
     #endregion
 }

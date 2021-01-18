@@ -25,8 +25,11 @@ using System.Threading.Tasks;
         //服务层
         NetSvc.Instance.Init();
         CacheSvc.Instance.Init();
+        CfgSvc.Instance.Init();
+        GuideSvc.Instance.Init();
         //业务系统层
         LoginSys.Instance.Init();
+        ChatSys.Instance.Init();
 
 
     }
@@ -34,6 +37,16 @@ using System.Threading.Tasks;
     public void Update()
     {
         NetSvc.Instance.Update();
+    }
+
+    private int SessionID = 0;
+    public int GetSessionID()
+    {
+        if (SessionID == int.MaxValue)
+        {
+            SessionID = 0;
+        }
+        return SessionID ++;
     }
    }
 

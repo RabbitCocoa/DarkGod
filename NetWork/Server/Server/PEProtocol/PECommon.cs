@@ -6,6 +6,8 @@
 	功能：客户端服务端共用工具类
 *****************************************************/
 using PENet;
+using PEProtocol;
+
 public enum LogType
 {
     Log = 0,
@@ -21,5 +23,17 @@ public class PECommon
 		LogLevel lv = (LogLevel)type;
 		PETool.LogMsg(msg, lv);	
 	}
+	//计算战斗力
+	public static int GetFightByProps(PlayerData data)
+    {
+
+		return data.lv * 100 + data.ad + data.ap + data.addef + data.apdef;
+    }
+
+	//计算经验值
+	public static int GetExpUpVaByLv(int lv)
+    {
+		return 100 * lv * lv;
+    }
 }
 

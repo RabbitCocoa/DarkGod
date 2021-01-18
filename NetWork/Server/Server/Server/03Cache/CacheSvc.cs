@@ -76,12 +76,35 @@ using System.Collections.Generic;
 
     public bool UpdatePlayerData(int id,PlayerData data)
     {
-        bool isSuccess = true;
         //TODO
 
 
         return dB.UpdatePlayerData(id,data);
 
+    }
+    public void AcctOffLine(ServerSession session)
+    {
+        foreach(var item in onlineAcctsDic)
+        {
+            if (item.Value == session)
+            {
+                onlineAcctsDic.Remove(item.Key);
+                break;
+            }
+        }
+
+       bool succ= onLineSessionDic.Remove(session);
+        PECommon.Log(session.sessionID + "-Offline Result:" + succ);
+    }
+
+    public List<ServerSession> GetOnlineSeverSession()
+    {
+        List<ServerSession> lst = new List<ServerSession>();
+        foreach(var item in onLineSessionDic)
+        {
+            lst.Add(item.Key);
+        }
+        return lst;
     }
 }
 

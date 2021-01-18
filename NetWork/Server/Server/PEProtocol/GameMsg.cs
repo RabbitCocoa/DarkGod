@@ -15,6 +15,12 @@ namespace PEProtocol
 		public ReqLogin reqLogin;
 		public RspLogin rspLogin;
 		public Rename rename;
+
+		public ReqGuide reqGuide;
+		public ResGuide resGuide;
+
+		public SndChat sndChat;
+		public PshChat pndChat;
     }
 	public enum CMD
     {
@@ -22,7 +28,15 @@ namespace PEProtocol
 		//登录相关
 		ReqLogin=101,
 		RspLogin=102,
-		ReName=103
+		ReName=103,
+
+			//主城相关
+			ReqGuide=201,
+			ResGuied=202,
+
+
+			SndChat=206,
+		PshChat = 207
     }
 
 	public enum ErrorCode
@@ -31,7 +45,8 @@ namespace PEProtocol
 		AcctIsOnline=501,//账号已上线
 		WrongPass=502,//账号或密码错误
 		NameRepeat,//名字已存在
-		UpdateDbError//更新数据库失败
+		UpdateDbError,//更新数据库失败
+		ServerDataError
     }
 
     #region 登录相关
@@ -59,6 +74,17 @@ namespace PEProtocol
 		public int coin;
 		public int diamond;
 		//@TOADD
+
+		public int hp;
+		public int ad;
+		public int ap;
+		public int addef;
+		public int apdef;
+		public int dodge; //闪避
+		public int pierce; //穿透
+		public int critical; //暴击
+		public int guideid;
+
     }
 
 	[Serializable]
@@ -67,6 +93,40 @@ namespace PEProtocol
 		public string name;
     }
     #endregion
+
+    #region 引导相关
+    #endregion
+
+
+    #region 聊天相关
+	[Serializable]
+	public class SndChat
+    {
+		public string chat;
+    }
+	[Serializable]
+	public class PshChat
+    {
+		public string name;
+		public string chat;
+    }
+    #endregion
+    [Serializable]
+    public class ReqGuide
+    {
+		public int guideId;
+    }
+	[Serializable]
+	public class ResGuide
+    {
+		public int guideId;
+		public int coin;
+		public int lv;
+		public int exp;
+
+    }
+
+    
 
     public class SrvCfg
     {

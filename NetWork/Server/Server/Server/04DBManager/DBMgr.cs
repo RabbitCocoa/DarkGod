@@ -65,6 +65,17 @@ public class DBMgr
                         power = reader.GetInt32("power"),
                         coin = reader.GetInt32("coin"),
                         diamond = reader.GetInt32("diamond"),
+
+                        hp = reader.GetInt32("hp"),
+                        ad = reader.GetInt32("ad"),
+                        addef = reader.GetInt32("addef"),
+                        ap = reader.GetInt32("ap"),
+                        apdef = reader.GetInt32("apdef"),
+                        pierce = reader.GetInt32("pierce"),
+                        critical = reader.GetInt32("critical"),
+                        dodge = reader.GetInt32("dodge"),
+                        //@TOADD
+                        guideid = reader.GetInt32("guideid")
                     };
                 }
             }
@@ -86,7 +97,17 @@ public class DBMgr
                     coin=5000,
                     diamond=100,
                     name="",
-                    power=150
+                    power=150,
+
+                    hp=2000,
+                    ad=275,
+                    ap=265,
+                    addef=67,
+                    apdef=43,
+                    dodge=7,
+                    pierce=5,
+                    critical=2,
+                    guideid=1001
                 };
             }
             if(reader!=null)
@@ -114,7 +135,10 @@ public class DBMgr
         {
             MySqlCommand cmd = new MySqlCommand
                 ("insert into account set acct=@acct,pass=@pass,name=@name,lv=@lv,exp=@exp,power=@power," +
-                "coin=@coin,diamond=@diamond", conct);
+                "coin=@coin,diamond=@diamond"+
+                ",hp=@hp,ad=@ad,ap=@ap,addef=@addef,apdef=@apdef,dodge=@dodge,pierce=@pierce,critical=@critical"
+                +",guideid=@guideid"
+                , conct);
 
             cmd.Parameters.AddWithValue("acct", acct);
             cmd.Parameters.AddWithValue("pass", passwd);
@@ -125,6 +149,15 @@ public class DBMgr
             cmd.Parameters.AddWithValue("coin", _data.coin);
             cmd.Parameters.AddWithValue("diamond", _data.diamond);
             //TOADD
+            cmd.Parameters.AddWithValue("hp", _data.hp);
+            cmd.Parameters.AddWithValue("ad", _data.ad);
+            cmd.Parameters.AddWithValue("addef", _data.addef);
+            cmd.Parameters.AddWithValue("ap", _data.ap);
+            cmd.Parameters.AddWithValue("apdef", _data.apdef);
+            cmd.Parameters.AddWithValue("dodge", _data.dodge);
+            cmd.Parameters.AddWithValue("pierce", _data.pierce);
+            cmd.Parameters.AddWithValue("critical", _data.critical);
+            cmd.Parameters.AddWithValue("guideid", _data.guideid);
 
 
             cmd.ExecuteNonQuery();
@@ -179,7 +212,10 @@ public class DBMgr
         try
         {
             MySqlCommand cmd = new MySqlCommand
-                ("update account set name=@name,lv=@lv,exp=@exp,power=@power,coin=@coin,diamond=@diamond where id=@id ", conct);
+                ("update account set name=@name,lv=@lv,exp=@exp,power=@power,coin=@coin,diamond=@diamond " +
+                ",hp=@hp,ad=@ad,ap=@ap,addef=@addef,apdef=@apdef,dodge=@dodge,pierce=@pierce,critical=@critical " +
+                ",guideid=@guideid  "+
+                "where id=@id ", conct);
 
             cmd.Parameters.AddWithValue("name",data.name);
             cmd.Parameters.AddWithValue("lv",data.lv);
@@ -188,6 +224,18 @@ public class DBMgr
             cmd.Parameters.AddWithValue("coin",data.coin);
             cmd.Parameters.AddWithValue("diamond",data.diamond);
             cmd.Parameters.AddWithValue("id",data.id);
+
+            cmd.Parameters.AddWithValue("hp", data.hp);
+            cmd.Parameters.AddWithValue("ad", data.ad);
+            cmd.Parameters.AddWithValue("addef", data.addef);
+            cmd.Parameters.AddWithValue("ap", data.ap);
+            cmd.Parameters.AddWithValue("apdef", data.apdef);
+            cmd.Parameters.AddWithValue("dodge", data.dodge);
+            cmd.Parameters.AddWithValue("pierce", data.pierce);
+            cmd.Parameters.AddWithValue("critical", data.critical);
+
+            cmd.Parameters.AddWithValue("guideid", data.guideid);
+
             reader = cmd.ExecuteReader();
            
         }

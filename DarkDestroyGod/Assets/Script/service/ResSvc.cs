@@ -25,6 +25,8 @@ public class ResSvc : MonoBehaviour
     {
         instance = this;
         InitRDNameCfg();
+        InitMapCfg();
+        InitGuideCfg();
     }
     /// <summary>
     /// 异步加载场景
@@ -81,7 +83,49 @@ public class ResSvc : MonoBehaviour
         return au;
     }
 
+
+    private Dictionary<string, GameObject> objDic = new Dictionary<string, GameObject>();
+   
+    public GameObject LoadPrefab(string path, bool cache = false)
+    {
+        GameObject prefab = null;
+        if (!objDic.TryGetValue(path, out prefab))
+        {
+            prefab = Resources.Load<GameObject>(path);
+            if (cache)
+            {
+                objDic.Add(path, prefab);
+            }
+        }
+
+        GameObject go = null;
+        if (prefab != null)
+            go = Instantiate(prefab);
+
+        return go;
+    }
+
+    //图片缓存
+    private Dictionary<string, Sprite> imgDic = new Dictionary<string, Sprite>();
+    public Sprite LoadSprite(string path,bool iscache = false)
+    {
+        Sprite sp = null;
+        if(!imgDic.TryGetValue(path,out sp))
+        {
+            sp = Resources.Load<Sprite>(path);
+            if (iscache)
+                imgDic.Add(path, sp);
+        }
+        return sp;
+    }
+
+
     #region InitCfgs
+
+
+
+
+    #region 随机姓名
     private List<string> surnameList = new List<string>();
     private List<string> mennameList = new List<string>();
     private List<string> womennameList = new List<string>();
@@ -139,6 +183,160 @@ public class ResSvc : MonoBehaviour
 
         return rdName;
     }
+    #endregion
+
+    #region 地图配置
+    private Dictionary<int, MapCfg> mapCfgDic = new Dictionary<int, MapCfg>();
+    private void InitMapCfg()
+    {
+        TextAsset xml = Resources.Load<TextAsset>(PathDefine.MapCfg);
+        if (!xml)
+        {
+            PECommon.Log("xml file:" + PathDefine.MapCfg + " not exist");
+        }
+        else
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml.text);
+
+            XmlNodeList nodLst = doc.SelectSingleNode("root").ChildNodes;
+            for (int i = 0; i < nodLst.Count; i++)
+            {
+                XmlElement ele = nodLst[i] as XmlElement;
+                //如果ID不存在 读下一条
+                if (ele.GetAttributeNode("ID") == null)
+                {
+                    continue;
+                }
+                int id = Convert.ToInt32(ele.GetAttributeNode("ID").InnerText);
+                MapCfg mc = new MapCfg
+                {
+                    ID = id
+                };
+                foreach (XmlElement e in nodLst[i].ChildNodes)
+                {
+                    switch (e.Name)
+                    {
+                    case "mapName":
+                        mc.mapName = e.InnerText;
+                        break;
+                    case "sceneName":
+                        mc.sceneName = e.InnerText;
+                        break;
+
+                        case "mainCamPos":
+                            {
+                                string[] valArr = e.InnerText.Split(',');
+                                mc.mainCamPos = new Vector3
+                               (float.Parse(valArr[0]), float.Parse(valArr[1]),
+                                 float.Parse(valArr[2]));
+                                break;
+                            }
+                        case "mainCamRote":
+                            {
+                                string[] valArr = e.InnerText.Split(',');
+                                mc.mainCamRote = new Vector3
+                               (float.Parse(valArr[0]), float.Parse(valArr[1]),
+                                 float.Parse(valArr[2]));
+                                break;
+                            }
+                        case "playerBornPos":
+                            {
+                                string[] valArr = e.InnerText.Split(',');
+                                mc.playerBornPos = new Vector3
+                               (float.Parse(valArr[0]), float.Parse(valArr[1]),
+                                 float.Parse(valArr[2]));
+                                break;
+                            }
+                        case "playerBornRote":
+                            {
+                                string[] valArr = e.InnerText.Split(',');
+                                mc.playerBornRote = new Vector3
+                               (float.Parse(valArr[0]), float.Parse(valArr[1]),
+                                 float.Parse(valArr[2]));
+                                break;
+                            }
+                    }
+
+                }
+                mapCfgDic.Add(id, mc);
+            }
+        }
+    }
+
+    public MapCfg GetMapCfgData(int id)
+    {
+        MapCfg data;
+        if(mapCfgDic.TryGetValue(id,out data))
+        {
+            return data;
+        }
+        return null;
+    }
+
+    #endregion
+
+    #region 自动引导配置
+    private Dictionary<int, AutoGuideCfg> autoGuideCfgDic = new Dictionary<int, AutoGuideCfg>();
+    private void InitGuideCfg()
+    {
+        TextAsset xml = Resources.Load<TextAsset>(PathDefine.AutoGuideCfg);
+        if (!xml)
+        {
+            PECommon.Log("xml file:" + PathDefine.AutoGuideCfg + " not exist");
+        }
+        else
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml.text);
+
+            XmlNodeList nodLst = doc.SelectSingleNode("root").ChildNodes;
+            for (int i = 0; i < nodLst.Count; i++)
+            {
+                XmlElement ele = nodLst[i] as XmlElement;
+                //如果ID不存在 读下一条
+                if (ele.GetAttributeNode("ID") == null)
+                {
+                    continue;
+                }
+                int id = Convert.ToInt32(ele.GetAttributeNode("ID").InnerText);
+                AutoGuideCfg mc = new AutoGuideCfg
+                {
+                    ID = id
+                };
+                foreach (XmlElement e in nodLst[i].ChildNodes)
+                {
+                    switch (e.Name)
+                    {
+                        case "npcID":
+                            mc.npcID = int.Parse(e.InnerText);
+                            break;
+                        case "actID":
+                            mc.actID = int.Parse(e.InnerText);
+                            break;
+                        case "coin":
+                            mc.coin = int.Parse(e.InnerText);
+                            break;
+                        case "exp":
+                            mc.exp = int.Parse(e.InnerText);
+                            break;
+                        case "dilogArr":
+                            mc.dilogArr = e.InnerText;
+                            break;
+                    }
+                }
+                autoGuideCfgDic.Add(id, mc);
+            }
+        }
+    }
+    public AutoGuideCfg GetGuideCfg(int id)
+    {
+        AutoGuideCfg cfg = null;
+        autoGuideCfgDic.TryGetValue(id, out cfg);
+
+        return cfg;
+    }
+    #endregion
     #endregion
 }
 
